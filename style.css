@@ -1,0 +1,37 @@
+:root {
+    font-size: 18px;
+    --primary-color: #036BA1;
+    --secondary-color: rgba(0, 150, 199, 0.6);
+    --ligth-grey: rgba(229, 229, 229, 1);
+
+}
+
+body, ul, li, p {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: var(--ligth-grey);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    outline: 2px solid red;
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 2rem; 
+}
+
+.header-brand-img {
+    width: 50px;
+}
+
+.header-brand-txt {
+    text-transform: uppercase;
+}
