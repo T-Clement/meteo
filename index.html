@@ -1,34 +1,43 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
-<body>
-    <header class="header">
-        <div class="header-brand">
-            <img class="header-brand-img" src="/img/logo-meteo.png" alt="logo Clearsky">
-            <p class="header-brand-txt">Clearsky</p>
-        </div>
-        <nav class="header-nav">
-            <div class="search-wrapper">
-                <input id="search-bar"  class='header-nav-input' type="text" placeholder="Recherchez votre ville">
-                <a class="header-nav-btn" href="#">
-                    <img src="/svg/search.svg" alt="">
-                </a>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Document</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-brand">
+                <img
+                    class="header-brand-img"
+                    src="/meteo/img/logo-meteo.png"
+                    alt="logo Clearsky"
+                />
+                <p class="header-brand-txt">Clearsky</p>
             </div>
-        </nav>
-    </header>
-    <script src="script.js"></script>
-</body>
-</html>
+            <form class="form">
+                <label class="label">
+                    <input
+                        class="input"
+                        type="text"
+                        name="search"
+                        placeholder="Enter a city name"
+                    />
+                </label>
+                <div class="suggestions"></div>
+            </form>
+        </header>
 
-<!-- <div class="search-container">
-    <form action="/action_page.php">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit">Submit</button>
-    </form>
-  </div> -->
+        <main>
+            <section class="localisation-component" > 
+        </section>
+            <section
+                class="weather-component">
+            </section>
+        
+        </main>
+        <script src="script.js"></script>
+    </body>
+</html>
