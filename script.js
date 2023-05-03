@@ -21,9 +21,6 @@ async function searchCities(query) {
                 });
             });
         }
-        else {
-            console.error('City is not an array')
-        }
     }
 }
 
