@@ -7,7 +7,7 @@ async function searchCities(query) {
     );
     const cities = await response.json();
     const suggestions = cities
-        .map((city) => `<button>${city.name}</button>`)
+        .map((city) => `<button>${city.name}, ${city.country}</button>`)
         .join("");
     suggestionsList.innerHTML = suggestions;
     const cityButtons = document.querySelectorAll(".suggestions button");
@@ -27,6 +27,12 @@ searchInput.addEventListener("input", () => {
     }
 });
 toGetCity();
+
+
+
+
+
+
 // async function toGetCity(name) {
 //     let response = await fetch(
 //         `https://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q=${name}`
