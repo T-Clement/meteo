@@ -1,5 +1,5 @@
 const searchInput = document.querySelector('input[name="search"]');
-const suggestionsList = document.querySelector(".header_form-suggestions");
+const suggestionsList = document.querySelector("#suggestions");
 
 async function searchCities(query) {
     const response = await fetch(
@@ -10,9 +10,7 @@ async function searchCities(query) {
         .map((city) => `<button>${city.name} (${city.country})</button>`)
         .join("");
     suggestionsList.innerHTML = suggestions;
-    const cityButtons = document.querySelectorAll(
-        ".header_form-suggestions button"
-    );
+    const cityButtons = document.querySelectorAll("#suggestions button");
     cityButtons.forEach((button) => {
         button.addEventListener("click", () => {
             searchInput.value = button.textContent;
