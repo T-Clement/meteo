@@ -1,5 +1,5 @@
 const searchInput = document.querySelector('input[name="search"]');
-const suggestionsList = document.querySelector(".suggestions");
+const suggestionsList = document.querySelector(".header_form-suggestions");
 
 async function searchCities(query) {
     const response = await fetch(
@@ -7,10 +7,12 @@ async function searchCities(query) {
     );
     const cities = await response.json();
     const suggestions = cities
-        .map((city) => `<button>${city.name}, ${city.country}</button>`)
+        .map((city) => `<button>${city.name} (${city.country})</button>`)
         .join("");
     suggestionsList.innerHTML = suggestions;
-    const cityButtons = document.querySelectorAll(".suggestions button");
+    const cityButtons = document.querySelectorAll(
+        ".header_form-suggestions button"
+    );
     cityButtons.forEach((button) => {
         button.addEventListener("click", () => {
             searchInput.value = button.textContent;
@@ -20,19 +22,12 @@ async function searchCities(query) {
 }
 searchInput.addEventListener("input", () => {
     const query = searchInput.value.trim();
-    if (query.length > 2) {
+    if (query.length >= 2) {
         searchCities(query);
     } else {
         suggestionsList.innerHTML = "";
     }
 });
-toGetCity();
-
-
-
-
-
-
 // async function toGetCity(name) {
 //     let response = await fetch(
 //         `https://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q=${name}`
