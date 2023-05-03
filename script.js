@@ -13,7 +13,7 @@ async function searchCities(query) {
                 .map(
                     (city) =>
                         `<button>${city.name} (${city.region}), ${city.country}</button>`
-                )
+                        )
                 .join("");
             suggestionsList.innerHTML = suggestions;
             const cityButtons = document.querySelectorAll(
