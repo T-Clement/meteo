@@ -39,3 +39,34 @@ body {
 .header-brand-txt {
     text-transform: uppercase;
 }
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label {
+    font-size: 20px;
+}
+
+.input {
+    padding: 6px;
+    font-size: 20px;
+    border: 2px solid #000;
+    border-radius: 6px;
+}
+
+.suggestions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    margin: 5px 0;
+    padding: 8px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
