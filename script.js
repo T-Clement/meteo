@@ -2,36 +2,45 @@ const searchInput = document.querySelector('input[name="search"]');
 const suggestionsList = document.querySelector(".suggestions");
 
 async function searchCities(query) {
-    const response = await fetch(
-        `https://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q=${query}`
-    );
-    const cities = await response.json();
-    const suggestions = cities
-        .map((city) => `<button>${city.name}, ${city.country}</button>`)
-        .join("");
-    suggestionsList.innerHTML = suggestions;
-    const cityButtons = document.querySelectorAll(".suggestions button");
-    cityButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            searchInput.value = button.textContent;
-            suggestionsList.innerHTML = "";
-        });
-    });
-}
-searchInput.addEventListener("input", () => {
-    const query = searchInput.value.trim();
-    if (query.length > 2) {
-        searchCities(query);
-    } else {
-        suggestionsList.innerHTML = "";
+    if (query.length >= 3) {
+        const response = await fetch(
+            `https://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q=${query}`
+        );
+        const cities = await response.json();
+
+        if (Array.isArray(cities)) {
+            const suggestions = cities
+                .map((city) => `<button>${city.name} (${city.region}), ${city.country}</button>`)
+                .join("");
+            suggestionsList.innerHTML = suggestions;
+            const cityButtons = document.querySelectorAll(".suggestions button");
+            cityButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    searchInput.value = button.textContent;
+                    suggestionsList.innerHTML = "";
+                });
+            });
+        }
     }
-});
-toGetCity();
+}
+
+let timer;
+
+searchInput.addEventListener("keyup", () => {
+    clearTimeout(timer);
+    timer = setTimeout(function() {
+    const query = searchInput.value.trim();
+    searchCities(query);    
+    console.log(query);
+    }, 500)
+})
 
 
-
-
-
+// async function searchWeather(query){
+//     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=caen&aqi=no`);
+//     const weather = await response.json();
+//     console.log(weather.current.temp_c);
+// }
 
 // async function toGetCity(name) {
 //     let response = await fetch(

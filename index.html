@@ -13,27 +13,20 @@
             <img class="header-brand-img" src="/img/logo-meteo.png" alt="logo Clearsky">
             <p class="header-brand-txt">Clearsky</p>
         </div>
-        <nav class="header-nav">
-            <div class="search-wrapper">
-                <input id="search-bar"  class='header-nav-input' type="text" placeholder="Recherchez votre ville">
-                <a class="header-nav-btn" href="#">
-                    <img src="/svg/search.svg" alt="">
-                </a>
-            </div>
-        </nav>
+        <form class="form">
+            <label class="label">
+            <input class="input"
+                type="text"
+                name="search"
+                placeholder="Enter a city name"
+                />
+            </label>
+            <div class="suggestions"></div>
+        </form>
     </header>
 
     
-    <form class="form">
-        <label class="label">
-        <input class="input"
-            type="text"
-            name="search"
-            placeholder="Enter a city name"
-            />
-        </label>
-        <div class="suggestions"></div>
-    </form>
+    
 
 
     <script src="script.js"></script>
