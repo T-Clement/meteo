@@ -74,6 +74,8 @@ async function searchCities(query) {
 
                     const temperature = document.getElementById("temperature");
                     temperature.innerText = `Température actuelle à ${weatherData.location.name}: ${weatherData.current.temp_c}°C`;
+                    // const weather = document.getElementById("weather");
+                    // weather.innerText = `Température actuelle à ${weatherData.location.name}: ${weatherData.current.condition.icon}°C`;
                     console.log(
                         `Température actuelle à ${weatherData.location.name}: ${weatherData.current.temp_c}°C`
                     );
@@ -101,13 +103,13 @@ async function toGetValuesfromCity(name) {
     let response = await fetch(
         `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${name}&aqi=no`
     );
-    // let response = await fetch(
+    // let response = await fetch(                      //search/autocomplete url
     //     `https://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q=${query}`
     // );
     let valuesAPI = await response.json();
-    console.log(valuesAPI.current.temp_c);
-    console.log(valuesAPI.current.condition.text);
-    console.log(valuesAPI.current.condition.icon);
+    // console.log(valuesAPI.current.temp_c);
+    // console.log(valuesAPI.current.condition.text);
+    // console.log(valuesAPI.current.condition.icon);
     console.log(valuesAPI);
 }
 toGetValuesfromCity("Marseille");

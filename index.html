@@ -17,26 +17,35 @@
                 />
                 <p class="header-brand-txt">Clearsky</p>
             </div>
+
             <form class="form">
                 <label class="form__label">
                     <input
                         autocomplete="off"
                         class="form__input"
+
                         type="text"
                         name="search"
                         placeholder="Enter a city name"
                     />
                 </label>
+
                 <div id="suggestions" class="form__suggestions"></div>
+
             </form>
         </header>
+
         <main>
-            <p id="temperature"></p>
+            <section class="localisation-component"></section>
+            <section class="weather-component">
+                            <p id="temperature"></p>
             <img
                 src="//cdn.weatherapi.com/weather/128x128/day/113.png"
                 alt=""
             />
+            </section>
         </main>
+
         <script src="script.js"></script>
     </body>
 </html>
