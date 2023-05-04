@@ -55,10 +55,12 @@ async function searchCities(query) {
                     const loc = document.getElementById("loc");
                     loc.innerText = `${weatherData.location.name} (${weatherData.location.region}), ${weatherData.location.country}`;
 
-                    // changer la taille/qualité de l'icône en 128x128
-                    let qualityOfIcon = "128x128";
                     // img.src = `${weatherData.current.condition.icon}`;
                     // let url = img.src;
+
+                    
+                    // changer la taille/qualité de l'icône en 128x128
+                    let qualityOfIcon = "128x128";
                     let url = `${weatherData.current.condition.icon}`;
                     let urlModified = url.split("/");
                     urlModified[4] = qualityOfIcon;
