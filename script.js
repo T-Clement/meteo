@@ -1,44 +1,13 @@
-// const searchInput = document.querySelector('input[name="search"]');
-// const suggestionsList = document.querySelector("#suggestions");
+// display none element transitionned after and of transition
+const logoTransition = document.querySelector(".logo-transition");
+logoTransition.addEventListener("animationend", function () {
+    logoTransition.style.display = "none";
+});
 
-// async function searchCities(query) {
-//     if (query.length >= 3) {
-//         const response = await fetch(
-//             `https://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q=${query}`
-//         );
-//         const cities = await response.json();
-
-//         if (Array.isArray(cities)) {
-//             const suggestions = cities
-//                 .map(
-//                     (city) =>
-//                         `<button>${city.name} (${city.region}), ${city.country}</button>`
-//                 )
-//                 .join("");
-//             suggestionsList.innerHTML = suggestions;
-//             const cityButtons = document.querySelectorAll(
-//                 "#suggestions button"
-//             );
-//             cityButtons.forEach((button) => {
-//                 button.addEventListener("click", () => {
-//                     searchInput.value = button.textContent;
-//                     suggestionsList.innerHTML = "";
-//                 });
-//             });
-//         }
-//     }
-// }
-
-// let timer;
-
-// searchInput.addEventListener("keyup", () => {
-//     clearTimeout(timer);
-//     timer = setTimeout(function () {
-//         const query = searchInput.value.trim();
-//         searchCities(query);
-//         console.log(query);
-//     }, 500);
-// });
+// normalize() convert string to normalize Unicode format   +  replace for replace by empty string special caracters
+function removeAccents(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
 
 const searchInput = document.querySelector('input[name="search"]');
 const suggestionsList = document.querySelector("#suggestions");
@@ -68,8 +37,11 @@ async function searchCities(query) {
                     searchInput.value = location;
                     suggestionsList.innerHTML = "";
 
+                    // changement de page
+                    // window.location.href = "weather.html";
+
                     const response = await fetch(
-                        `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${location}&days=3&aqi=yes&alerts=no`
+                        `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${location}&lang=fr&days=3&aqi=yes&alerts=no`
                     );
                     const weatherData = await response.json();
 
@@ -100,8 +72,8 @@ searchInput.addEventListener("keyup", () => {
     clearTimeout(timer);
     timer = setTimeout(function () {
         const query = searchInput.value.trim();
-        searchCities(query);
-        console.log(query);
+        console.log(removeAccents(query));
+        searchCities(removeAccents(query));
     }, 500);
 });
 

@@ -39,11 +39,37 @@ main {
     align-items: center;
     background-color: #036ba1;
 }
-
 .brand {
     display: flex;
     align-items: center;
     gap: 2rem;
+}
+
+.brand__logo {
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 10px;
+    top: 20px;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+        left: 20px;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.logo-transition {
+    animation: fadeOut 2s;
 }
 
 .brand__img {
@@ -157,6 +183,30 @@ button {
     .header__img {
         width: 100px;
     }
+
+    .logo {
+        position: absolute;
+        left: 20px;
+        top: 18px;
+    }
+
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+            left: 40px;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    .logo-transition {
+        animation: fadeOut 2s;
+    }
+
     .form {
         width: 30%;
         margin-bottom: 0;
