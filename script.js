@@ -42,11 +42,7 @@
 
 const searchInput = document.querySelector('input[name="search"]');
 const suggestionsList = document.querySelector("#suggestions");
-<<<<<<< HEAD
-let img = document.querySelector("#icon_weather");
-=======
 let img = document.querySelector("#icon__weather");
->>>>>>> b3e394262775b4a59c1254cb3a30105681da9e62
 
 async function searchCities(query) {
     if (query.length >= 3) {
@@ -78,16 +74,6 @@ async function searchCities(query) {
                     const weatherData = await response.json();
 
                     const temperature = document.getElementById("temperature");
-<<<<<<< HEAD
-                    temperature.innerText = `Température actuelle à ${weatherData.location.name}: ${weatherData.current.temp_c}°C`;
-                    img.src = `${weatherData.current.condition.icon}`
-                    // console.log(
-                    //     `Température actuelle à ${weatherData.location.name}: ${weatherData.current.temp_c}°C`
-                    // );
-                    // console.log(
-                    //     `Temps actuel à ${weatherData.location.name}: ${weatherData.current.condition.text}`
-                    // );
-=======
                     temperature.innerText = `${weatherData.current.temp_c}°C`;
                     const loc = document.getElementById("loc");
                     loc.innerText = `${weatherData.location.name} (${weatherData.location.region}), ${weatherData.location.country}`;
@@ -101,7 +87,6 @@ async function searchCities(query) {
                     console.log(
                         `Temps actuel à ${weatherData.location.name}: ${weatherData.current.condition.text}`
                     );
->>>>>>> b3e394262775b4a59c1254cb3a30105681da9e62
                 });
             });
         }
@@ -119,8 +104,6 @@ searchInput.addEventListener("keyup", () => {
     }, 500);
 });
 
-<<<<<<< HEAD
-=======
 async function toGetValuesfromCity(name) {
     let response = await fetch(
         `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${name}&aqi=no`
@@ -165,4 +148,3 @@ toGetValuesfromCity("Caen");
 // let url="http://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q="
 // url+=location.name
 // return url
->>>>>>> b3e394262775b4a59c1254cb3a30105681da9e62
