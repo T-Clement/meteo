@@ -63,12 +63,8 @@ main {
     100% {opacity: 0;}   
 }
 
-
 .logo-transition {
     animation: fadeOut 2s;
-    /* position: absolute;
-    left: 0;
-    top: 0; */
 }
 
 
@@ -136,6 +132,23 @@ button {
     .header-brand-img {
         width: 100px;
     }
+
+    .logo {
+        position: absolute;
+        left: 20px;
+        top: 40px;
+    }
+
+    @keyframes fadeOut {
+        0% { opacity: 1;}
+        50% {opacity: 0.5; left: 40px;}
+        100% {opacity: 0;}   
+    }
+    
+    .logo-transition {
+        animation: fadeOut 2s;
+    }
+
     .header_form {
         width: 30%;
         margin-bottom: 0;
