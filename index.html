@@ -18,24 +18,31 @@
                 <p class="header-brand-txt">Clearsky</p>
             </div>
 
-            <form class="header_form">
-                <label class="header_form-label">
+            <form class="form">
+                <label class="form__label">
                     <input
-                        class="header_form-input"
+                        autocomplete="off"
+                        class="form__input"
+
                         type="text"
                         name="search"
                         placeholder="Enter a city name"
                     />
                 </label>
 
-                <div id="suggestions" class="header_form-suggestions"></div>
+                <div id="suggestions" class="form__suggestions"></div>
+
             </form>
         </header>
 
         <main>
             <section class="localisation-component"></section>
             <section class="weather-component">
-                <p id="temperature"></p>
+                            <p id="temperature"></p>
+            <img
+                src="//cdn.weatherapi.com/weather/128x128/day/113.png"
+                alt=""
+            />
             </section>
         </main>
 
