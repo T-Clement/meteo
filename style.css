@@ -59,20 +59,16 @@ main {
 
 @keyframes fadeOut {
     0% { opacity: 1;}
+    50% {opacity: 0.5; left: 20px;}
     100% {opacity: 0;}   
 }
 
 
-/* @keyframes fadeOutside {
-    100% {}
-    
-} */
-
-
 .logo-transition {
     animation: fadeOut 2s;
-    
-
+    /* position: absolute;
+    left: 0;
+    top: 0; */
 }
 
 
