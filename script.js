@@ -55,7 +55,7 @@ async function searchCities(query) {
             const suggestions = cities
                 .map(
                     (city) =>
-                        `<button data-location="${city.name},${city.region},${city.country}">${city.name} (${city.region}), ${city.country}</button>`
+                        `<button data-location="${city.name}, ${city.region}, ${city.country}">${city.name} (${city.region}), ${city.country}</button>`
                 )
                 .join("");
             suggestionsList.innerHTML = suggestions;
@@ -69,7 +69,7 @@ async function searchCities(query) {
                     suggestionsList.innerHTML = "";
 
                     const response = await fetch(
-                        `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${location}`
+                        `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${location}&days=3&aqi=yes&alerts=no`
                     );
                     const weatherData = await response.json();
 
@@ -78,9 +78,10 @@ async function searchCities(query) {
                     const loc = document.getElementById("loc");
                     loc.innerText = `${weatherData.location.name} (${weatherData.location.region}), ${weatherData.location.country}`;
                     img.src = `${weatherData.current.condition.icon}`;
-                    // const weather = document.getElementById("weather");
-                    // weather.innerText = `Température actuelle à ${weatherData.location.name}: ${weatherData.current.condition.icon}°C`;
-
+                    const sunrise = document.getElementById("sunrise");
+                    sunrise.innerText = `Lever du soleil: ${weatherData.forecast.forecastday[0].astro.sunrise}`;
+                    const sunset = document.getElementById("sunset");
+                    sunset.innerText = `Coucher du soleil: ${weatherData.forecast.forecastday[0].astro.sunset}`;
                     console.log(
                         `Température actuelle à ${weatherData.location.name}: ${weatherData.current.temp_c}°C`
                     );
@@ -104,20 +105,29 @@ searchInput.addEventListener("keyup", () => {
     }, 500);
 });
 
-async function toGetValuesfromCity(name) {
+async function toGetValuesfromCity2(name) {
     let response = await fetch(
-        `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${name}&aqi=no`
+        `    https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${name}&days=3&aqi=yes&alerts=no`
     );
-    // let response = await fetch(                      //search/autocomplete url
-    //     `https://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q=${query}`
-    // );
     let valuesAPI = await response.json();
-    // console.log(valuesAPI.current.temp_c);
-    // console.log(valuesAPI.current.condition.text);
-    // console.log(valuesAPI.current.condition.icon);
     console.log(valuesAPI);
 }
-toGetValuesfromCity("Caen");
+toGetValuesfromCity2("Caen");
+// async function toGetValuesfromCity(name) {
+//     let response = await fetch(
+//         `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${name}&aqi=no`
+//     );
+//     let valuesAPI = await response.json();
+//     console.log(valuesAPI);
+// }
+// toGetValuesfromCity("Caen");
+
+// let response = await fetch(                      //search/autocomplete url
+//     `https://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q=${query}`
+// );
+// console.log(valuesAPI.current.temp_c);
+// console.log(valuesAPI.current.condition.text);
+// console.log(valuesAPI.current.condition.icon);
 // async function searchWeather(query){
 //     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=caen&aqi=no`);
 //     const weather = await response.json();

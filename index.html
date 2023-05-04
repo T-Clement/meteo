@@ -9,13 +9,13 @@
     </head>
     <body>
         <header class="header">
-            <div class="header-brand">
+            <div class="header__brand">
                 <img
-                    class="header-brand-img"
+                    class="header__img"
                     src="/img/logo-meteo.png"
                     alt="logo Clearsky"
                 />
-                <p class="header-brand-txt">Clearsky</p>
+                <h2 class="header__ttl">Clearsky</h2>
             </div>
 
             <form class="form">
@@ -34,13 +34,28 @@
         </header>
 
         <main>
-            <article class="localisation-component">
-                <p id="loc"></p>
-            </article>
-            <article class="weather-component">
-                <p id="temperature"></p>
-                <img id="icon__weather" class="icon__weather" src="" />
-            </article>
+            <section class="section-main">
+                <article class="section-main__localisation">
+                    <p class="section-main__localisation__txt" id="loc"></p>
+                </article>
+                <article class="section-main__weather">
+                    <div class="section-main__weather-info">
+                        <p
+                            class="section-main__weather-temp"
+                            id="temperature"
+                        ></p>
+                        <img
+                            id="icon__weather"
+                            class="section-main__weather-icon"
+                            src=""
+                        />
+                    </div>
+                    <div>
+                        <p id="sunrise"></p>
+                        <p id="sunset"></p>
+                    </div>
+                </article>
+            </section>
         </main>
 
         <script src="script.js"></script>
