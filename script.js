@@ -69,13 +69,13 @@ async function searchCities(query) {
                     
                     
                     // changement de page
-                    window.location.href = "weather.html";
+                    // window.location.href = "weather.html";
 
 
 
 
                     const response = await fetch(
-                        `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${location}`
+                        `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${location}&lang=fr`
                     );
                     const weatherData = await response.json();
                     
