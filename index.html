@@ -12,21 +12,23 @@
             <div class="header-brand">
                 <img
                     class="header-brand-img"
-                    src="/meteo/img/logo-meteo.png"
+                    src="/img/logo-meteo.png"
                     alt="logo Clearsky"
                 />
                 <p class="header-brand-txt">Clearsky</p>
             </div>
+
             <form class="form">
-                <label class="label">
+                <label class="form_label">
                     <input
-                        class="input"
+                        class="form_input"
                         type="text"
                         name="search"
                         placeholder="Enter a city name"
                     />
                 </label>
-                <div class="suggestions"></div>
+
+                <div id="suggestions" class="header_form-suggestions"></div>
             </form>
         </header>
 
@@ -38,6 +40,7 @@
             </section>
         
         </main>
+
         <script src="script.js"></script>
     </body>
 </html>
