@@ -9,34 +9,58 @@
     </head>
     <body>
         <header class="header">
-            <div class="header-brand">
-                <a class="header-brand-logo" href="index.html">
+            <div class="brand">
+                <a class="brand__logo" href="index.html">
                     <img
-                        class="header-brand-img"
+                        class="brand__img"
                         src="/img/sun-quality.png"
                         alt="logo Clearsky"
                     />
-                    <img class="header-brand-img logo logo-transition" src="/img/cloud.svg">
+                    <img class="brand__img logo logo-transition" src="/img/cloud.svg">
                 </a>
-                <p class="header-brand-txt">Clearsky</p>
+                <h2 class="brand__ttl">Clearsky</h2>
             </div>
-            <form class="header_form">
-                <label class="header_form-label">
+
+            <form class="form">
+                <label class="form__label">
                     <input
                         autocomplete="off"
-                        class="header_form-input"
+                        class="form__input"
                         type="text"
                         name="search"
                         placeholder="Enter a city name"
                     />
                 </label>
-                <div id="suggestions" class="header_form-suggestions"></div>
+
+                <div id="suggestions" class="form__suggestions"></div>
             </form>
         </header>
+
         <main>
-            <a href="index.html">retour à 0</a>
-            <p id="temperature"></p>
+            <section class="section-main">
+                <article class="section-main__localisation">
+                    <p class="section-main__localisation__txt" id="loc"></p>
+                </article>
+                <article class="section-main__weather">
+                    <div class="section-main__weather-info">
+                        <p
+                            class="section-main__weather-temp"
+                            id="temperature"
+                        ></p>
+                        <img
+                            id="icon__weather"
+                            class="section-main__weather-icon"
+                            src=""
+                        />
+                    </div>
+                    <div>
+                        <p id="sunrise"></p>
+                        <p id="sunset"></p>
+                    </div>
+                </article>
+            </section>
         </main>
+
         <script src="script.js"></script>
     </body>
 </html>

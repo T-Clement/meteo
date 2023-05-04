@@ -40,13 +40,13 @@ main {
     background-color: #036ba1;
 }
 
-.header-brand {
+.brand {
     display: flex;
     align-items: center;
     gap: 2rem;
 }
 
-.header-brand-logo {
+.brand__logo {
     position: relative;
 }
 
@@ -68,18 +68,18 @@ main {
 }
 
 
-.header-brand-img {
+.brand__img {
     width: 50px;
 }
 
-.header-brand-txt {
+.brand__ttl {
     text-transform: uppercase;
     color: #fff;
 }
 
 /* SEARCH BAR */
 
-.header_form {
+.form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -87,23 +87,23 @@ main {
     margin-bottom: 1rem;
 }
 
-.header_form-label {
+.form__label {
     font-size: 1.2rem;
     width: 60%;
 }
 
-.header_form-input {
+.form__input {
     border: 2px solid #000;
     border-radius: 20px;
     width: 100%;
     padding: 0.3rem;
 }
-.header_form-input::placeholder {
+.form__input::placeholder {
     font-size: 0.7rem;
     padding: 0.6rem;
 }
 
-.header_form-suggestions {
+.form__suggestions {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -118,8 +118,55 @@ button {
     width: 100%;
 }
 
+.section-main {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.section-main__weather-icon {
+    width: 120px;
+    height: 120px;
+}
+
+.section-main__localisation {
+    max-width: 50%;
+    border-radius: 15px;
+    background-color: #fff;
+    padding: 10px;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.section-main__weather {
+    height: 17rem;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.section-main__weather-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.section-main__weather-temp {
+    font-size: 2rem;
+    /* border-left: 2px solid #000;
+    padding-left: 5rem; */
+}
+
 @media screen and (max-width: 1024px) {
-    .header_form-suggestions {
+    .form__suggestions {
         width: 100%;
     }
 }
@@ -129,14 +176,14 @@ button {
         flex-direction: row;
         justify-content: space-around;
     }
-    .header-brand-img {
+    .header__img {
         width: 100px;
     }
 
     .logo {
         position: absolute;
         left: 20px;
-        top: 40px;
+        top: 18px;
     }
 
     @keyframes fadeOut {
@@ -149,19 +196,19 @@ button {
         animation: fadeOut 2s;
     }
 
-    .header_form {
+    .form {
         width: 30%;
         margin-bottom: 0;
         align-items: stretch;
         max-width: 330px;
     }
-    .header_form-label {
+    .form__label {
         width: 100%;
     }
-    .header_form-input {
+    .form__input {
         max-width: 320px;
     }
-    .header_form-suggestions {
+    .form__suggestions {
         width: 330px;
         margin-top: 1.7rem;
     }

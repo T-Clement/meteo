@@ -12,6 +12,7 @@ function removeAccents(str) {
 
 const searchInput = document.querySelector('input[name="search"]');
 const suggestionsList = document.querySelector("#suggestions");
+let img = document.querySelector("#icon__weather");
 
 async function searchCities(query) {
     if (query.length >= 3) {
@@ -24,7 +25,7 @@ async function searchCities(query) {
             const suggestions = cities
                 .map(
                     (city) =>
-                        `<button data-location="${city.name},${city.region},${city.country}">${city.name} (${city.region}), ${city.country}</button>`
+                        `<button data-location="${city.name}, ${city.region}, ${city.country}">${city.name} (${city.region}), ${city.country}</button>`
                 )
                 .join("");
             suggestionsList.innerHTML = suggestions;
@@ -45,12 +46,19 @@ async function searchCities(query) {
 
 
                     const response = await fetch(
-                        `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${location}&lang=fr`
+                        `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${location}&days=3&aqi=yes&alerts=no`
                     );
                     const weatherData = await response.json();
                     
                     const temperature = document.getElementById("temperature");
-                    temperature.innerText = `Température actuelle à ${weatherData.location.name}: ${weatherData.current.temp_c}°C`;
+                    temperature.innerText = `${weatherData.current.temp_c}°C`;
+                    const loc = document.getElementById("loc");
+                    loc.innerText = `${weatherData.location.name} (${weatherData.location.region}), ${weatherData.location.country}`;
+                    img.src = `${weatherData.current.condition.icon}`;
+                    const sunrise = document.getElementById("sunrise");
+                    sunrise.innerText = `Lever du soleil: ${weatherData.forecast.forecastday[0].astro.sunrise}`;
+                    const sunset = document.getElementById("sunset");
+                    sunset.innerText = `Coucher du soleil: ${weatherData.forecast.forecastday[0].astro.sunset}`;
                     console.log(
                         `Température actuelle à ${weatherData.location.name}: ${weatherData.current.temp_c}°C`
                     );
@@ -74,6 +82,29 @@ searchInput.addEventListener("keyup", () => {
     }, 500);
 });
 
+async function toGetValuesfromCity2(name) {
+    let response = await fetch(
+        `    https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${name}&days=3&aqi=yes&alerts=no`
+    );
+    let valuesAPI = await response.json();
+    console.log(valuesAPI);
+}
+toGetValuesfromCity2("Caen");
+// async function toGetValuesfromCity(name) {
+//     let response = await fetch(
+//         `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${name}&aqi=no`
+//     );
+//     let valuesAPI = await response.json();
+//     console.log(valuesAPI);
+// }
+// toGetValuesfromCity("Caen");
+
+// let response = await fetch(                      //search/autocomplete url
+//     `https://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q=${query}`
+// );
+// console.log(valuesAPI.current.temp_c);
+// console.log(valuesAPI.current.condition.text);
+// console.log(valuesAPI.current.condition.icon);
 // async function searchWeather(query){
 //     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=caen&aqi=no`);
 //     const weather = await response.json();
@@ -88,15 +119,6 @@ searchInput.addEventListener("keyup", () => {
 //     console.log(cityAPI);
 // }
 // toGetCity("Wurzburg");
-
-// async function toGetValuesfromCity(name) {
-//     let response = await fetch(
-//         `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${name}&aqi=no`
-//     );
-//     let valuesAPI = await response.json();
-//     console.log(valuesAPI);
-// }
-// toGetValuesfromCity("Caen");
 
 // Forecast to 10 days
 // async function toGetValuesfromCity(name) {
