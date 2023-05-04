@@ -55,6 +55,7 @@ main {
     color: #fff;
 }
 
+
 /* SEARCH BAR */
 
 .header_form {
@@ -94,6 +95,43 @@ button {
     font-size: 1rem;
     cursor: pointer;
     width: 100%;
+}
+
+
+
+.localisation-component {
+    width: 107px;
+    height: 36px;
+    border-radius: 15px;
+    background-color: #fff;
+    padding: 10px;
+    gap: 10px;
+    display: flex;
+    margin-left: 52px;
+    margin-top: 180px;
+    margin-bottom: 20px;
+
+}
+
+.localisation-component-txt {
+    font-size: 12px;
+
+}
+
+.weather-component {
+    margin: 0 auto;
+
+    height: 299.18px;
+    width: 341px;
+    border-radius: 20px;
+    background-color: var(--secondary-color);
+    display: flex;
+    padding: 25px;
+    gap: 27px;
+
+
+
+
 }
 
 @media screen and (max-width: 1024px) {
