@@ -1,3 +1,4 @@
+// display none element transitionned after and of transition
 const logoTransition = document.querySelector(".logo-transition");
 logoTransition.addEventListener("animationend", function () {
     logoTransition.style.display = "none";
