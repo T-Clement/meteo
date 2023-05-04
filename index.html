@@ -23,7 +23,6 @@
                     <input
                         autocomplete="off"
                         class="form__input"
-
                         type="text"
                         name="search"
                         placeholder="Enter a city name"
@@ -31,19 +30,17 @@
                 </label>
 
                 <div id="suggestions" class="form__suggestions"></div>
-
             </form>
         </header>
 
         <main>
-            <section class="localisation-component"></section>
-            <section class="weather-component">
-                            <p id="temperature"></p>
-            <img
-                src="//cdn.weatherapi.com/weather/128x128/day/113.png"
-                alt=""
-            />
-            </section>
+            <article class="localisation-component">
+                <p id="loc"></p>
+            </article>
+            <article class="weather-component">
+                <p id="temperature"></p>
+                <img id="icon__weather" class="icon__weather" src="" />
+            </article>
         </main>
 
         <script src="script.js"></script>

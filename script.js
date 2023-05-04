@@ -42,6 +42,7 @@
 
 const searchInput = document.querySelector('input[name="search"]');
 const suggestionsList = document.querySelector("#suggestions");
+let img = document.querySelector("#icon__weather");
 
 async function searchCities(query) {
     if (query.length >= 3) {
@@ -73,9 +74,13 @@ async function searchCities(query) {
                     const weatherData = await response.json();
 
                     const temperature = document.getElementById("temperature");
-                    temperature.innerText = `Température actuelle à ${weatherData.location.name}: ${weatherData.current.temp_c}°C`;
+                    temperature.innerText = `${weatherData.current.temp_c}°C`;
+                    const loc = document.getElementById("loc");
+                    loc.innerText = `${weatherData.location.name} (${weatherData.location.region}), ${weatherData.location.country}`;
+                    img.src = `${weatherData.current.condition.icon}`;
                     // const weather = document.getElementById("weather");
                     // weather.innerText = `Température actuelle à ${weatherData.location.name}: ${weatherData.current.condition.icon}°C`;
+
                     console.log(
                         `Température actuelle à ${weatherData.location.name}: ${weatherData.current.temp_c}°C`
                     );
@@ -112,7 +117,7 @@ async function toGetValuesfromCity(name) {
     // console.log(valuesAPI.current.condition.icon);
     console.log(valuesAPI);
 }
-toGetValuesfromCity("Marseille");
+toGetValuesfromCity("Caen");
 // async function searchWeather(query){
 //     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=caen&aqi=no`);
 //     const weather = await response.json();
