@@ -46,7 +46,7 @@ async function searchCities(query) {
 
 
                     const response = await fetch(
-                        `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${location}&days=3&aqi=yes&alerts=no`
+                        `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${location}&lang=fr&days=3&aqi=yes&alerts=no`
                     );
                     const weatherData = await response.json();
                     
