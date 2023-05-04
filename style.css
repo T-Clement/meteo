@@ -25,10 +25,10 @@ body {
     background-color: var(--ligth-grey);
 }
 
-main {
+/* main {
     max-width: 1280px;
     margin: 0 auto;
-}
+} */
 
 /* HEADER  */
 
@@ -37,20 +37,20 @@ main {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: #036ba1;
+    background-color: var(--primary-color);
 }
 
-.header-brand {
+.brand {
     display: flex;
     align-items: center;
     gap: 2rem;
 }
 
-.header-brand-img {
+.brand__img {
     width: 50px;
 }
 
-.header-brand-txt {
+.brand__ttl {
     text-transform: uppercase;
     color: #fff;
 }

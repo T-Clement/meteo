@@ -5,20 +5,23 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="style2.css" />
         <title>Document</title>
     </head>
     <body>
-        <header class="header">
-            <div class="header__brand">
+        <!-- <header class="header">
+        </header> -->
+        
+        <main class="main">
+            <div class="brand">
                 <img
-                    class="header__img"
-                    src="/img/logo-meteo.png"
+                    class="brand__img"
+                    src="/meteo/img/logo-meteo.png"
                     alt="logo Clearsky"
                 />
-                <p class="header__txt">Clearsky</p>
+                <p class="brand__ttl">Clearsky</p>
             </div>
-
-            <form class="form">
+            <form class="welcome__form">
                 <label class="form__label">
                     <input
                         autocomplete="off"
@@ -28,21 +31,10 @@
                         placeholder="Enter a city name"
                     />
                 </label>
-
                 <div id="suggestions" class="form__suggestions"></div>
             </form>
-        </header>
-
-        <main>
-            <article class="localisation-component">
-                <p id="loc"></p>
-            </article>
-            <article class="weather-component">
-                <p id="temperature"></p>
-                <img id="icon__weather" class="icon__weather" src="" />
-            </article>
         </main>
-
+        
         <script src="script.js"></script>
     </body>
 </html>
