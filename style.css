@@ -46,6 +46,36 @@ main {
     gap: 2rem;
 }
 
+.header-brand-logo {
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 10px;
+    top: 20px;
+}
+
+
+@keyframes fadeOut {
+    0% { opacity: 1;}
+    100% {opacity: 0;}   
+}
+
+
+/* @keyframes fadeOutside {
+    100% {}
+    
+} */
+
+
+.logo-transition {
+    animation: fadeOut 2s;
+    
+
+}
+
+
 .header-brand-img {
     width: 50px;
 }
