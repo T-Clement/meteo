@@ -40,17 +40,17 @@ main {
     background-color: #036ba1;
 }
 
-.header__brand {
+.brand {
     display: flex;
     align-items: center;
     gap: 2rem;
 }
 
-.header__img {
+.brand__img {
     width: 50px;
 }
 
-.header__ttl {
+.brand__ttl {
     text-transform: uppercase;
     color: #fff;
 }
