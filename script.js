@@ -65,7 +65,7 @@ async function searchCities(query) {
                     urlModified = urlModified.join("/");
                     console.log("url: " + url);
                     console.log(urlModified);
-                    img.src = ""
+                    img.src = `${urlModified}`;
 
 
                     // autres fonctionnalités
