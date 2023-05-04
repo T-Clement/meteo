@@ -66,12 +66,19 @@ async function searchCities(query) {
                     const location = button.dataset.location;
                     searchInput.value = location;
                     suggestionsList.innerHTML = "";
+                    
+                    
+                    // changement de page
+                    window.location.href = "weather.html";
+
+
+
 
                     const response = await fetch(
                         `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${location}`
                     );
                     const weatherData = await response.json();
-
+                    
                     const temperature = document.getElementById("temperature");
                     temperature.innerText = `Température actuelle à ${weatherData.location.name}: ${weatherData.current.temp_c}°C`;
                     console.log(
