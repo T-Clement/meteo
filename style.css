@@ -57,7 +57,7 @@ main {
 
 /* SEARCH BAR */
 
-.header_form {
+.form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,23 +65,23 @@ main {
     margin-bottom: 1rem;
 }
 
-.header_form-label {
+.form__label {
     font-size: 1.2rem;
     width: 60%;
 }
 
-.header_form-input {
+.form__input {
     border: 2px solid #000;
     border-radius: 20px;
     width: 100%;
     padding: 0.3rem;
 }
-.header_form-input::placeholder {
+.form__input::placeholder {
     font-size: 0.7rem;
     padding: 0.6rem;
 }
 
-.header_form-suggestions {
+.form__suggestions {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -96,8 +96,42 @@ button {
     width: 100%;
 }
 
+.icon__weather {
+    width: 120px;
+    height: 120px;
+}
+
+.localisation-component {
+    width: 107px;
+    height: 36px;
+    border-radius: 15px;
+    background-color: #fff;
+    padding: 10px;
+    gap: 10px;
+    display: flex;
+    margin-left: 52px;
+    margin-top: 180px;
+    margin-bottom: 20px;
+}
+
+.localisation-component-txt {
+    font-size: 12px;
+}
+
+.weather-component {
+    margin: 0 auto;
+
+    height: 299.18px;
+    width: 341px;
+    border-radius: 20px;
+    background-color: var(--secondary-color);
+    display: flex;
+    padding: 25px;
+    gap: 27px;
+}
+
 @media screen and (max-width: 1024px) {
-    .header_form-suggestions {
+    .form__suggestions {
         width: 100%;
     }
 }
@@ -110,19 +144,19 @@ button {
     .header-brand-img {
         width: 100px;
     }
-    .header_form {
+    .form {
         width: 30%;
         margin-bottom: 0;
         align-items: stretch;
         max-width: 330px;
     }
-    .header_form-label {
+    .form__label {
         width: 100%;
     }
-    .header_form-input {
+    .form__input {
         max-width: 320px;
     }
-    .header_form-suggestions {
+    .form__suggestions {
         width: 330px;
         margin-top: 1.7rem;
     }
