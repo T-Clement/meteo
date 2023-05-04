@@ -40,6 +40,20 @@ searchInput.addEventListener("keyup", () => {
     }, 500);
 });
 
+async function toGetValuesfromCity(name) {
+    let response = await fetch(
+        `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${name}&aqi=no`
+    );
+    // let response = await fetch(
+    //     `https://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q=${query}`
+    // );
+    let valuesAPI = await response.json();
+    console.log(valuesAPI.current.temp_c);
+    console.log(valuesAPI.current.condition.text);
+    console.log(valuesAPI.current.condition.icon);
+    console.log(valuesAPI);
+}
+toGetValuesfromCity("Marseille");
 // async function searchWeather(query){
 //     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=caen&aqi=no`);
 //     const weather = await response.json();
@@ -54,15 +68,6 @@ searchInput.addEventListener("keyup", () => {
 //     console.log(cityAPI);
 // }
 // toGetCity("Wurzburg");
-
-// async function toGetValuesfromCity(name) {
-//     let response = await fetch(
-//         `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${name}&aqi=no`
-//     );
-//     let valuesAPI = await response.json();
-//     console.log(valuesAPI);
-// }
-// toGetValuesfromCity("Caen");
 
 // Forecast to 10 days
 // async function toGetValuesfromCity(name) {
