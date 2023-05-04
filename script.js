@@ -4,8 +4,10 @@ logoTransition.addEventListener("animationend", function () {
     logoTransition.style.display = "none";
 });
 
-
-
+// normalize() convert string to normalize Unicode format   +  replace for replace by empty string special caracters
+function removeAccents(str) {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+  }
 
 
 const searchInput = document.querySelector('input[name="search"]');
@@ -67,8 +69,8 @@ searchInput.addEventListener("keyup", () => {
     clearTimeout(timer);
     timer = setTimeout(function () {
         const query = searchInput.value.trim();
-        searchCities(query);
-        console.log(query);
+        console.log(removeAccents(query));
+        searchCities(removeAccents(query));
     }, 500);
 });
 
