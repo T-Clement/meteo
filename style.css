@@ -4,6 +4,7 @@
     --secondary-color: rgba(0, 150, 199, 0.6);
     --ligth-grey: rgba(229, 229, 229, 1);
     --light-blue: rgba(0, 150, 199, 0.3);
+    font-family: ;
 }
 
 @media screen and (min-width: 1024px) {
@@ -258,6 +259,7 @@ button {
     .section-main, 
     .section-main__weather,
     .section-main__,
+    .future,
     .future__lst, 
     .future__itm{
         margin: 0;
@@ -267,7 +269,11 @@ button {
         display: flex;
         flex-direction: row;
         margin: 0;
+        justify-content: space-around;
+        height: 100%;
     }
+
+
 
     .future__itm{
         width: 150px;
@@ -277,6 +283,9 @@ button {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
+        gap: 1rem;
+        margin-left: 5%;
+        margin-bottom: 5%;
     }
 }
 
