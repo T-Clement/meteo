@@ -9,6 +9,24 @@ function removeAccents(str) {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
+
+// function geoLocalisation
+function getMyPosition() {
+    navigator.geolocation.getCurrentPosition(function (position) {    //navigator Objet contenant ttes les infos de l user / Geolocation obtenir la geoloc/ GetCurrentPosition Methode demande la position de l appareil de l'user et traite le retour.
+        console.log("Position trouvée : Latitude=" + position.coords.latitude + " Longitude=" + position.coords.longitude);
+        // return `${position.coords.latitude}, ${position.coords.longitude}`;
+        console.log(position.coords);
+    }, function (error) {
+        console.log("Erreur de géoloc N°" + error.code + " : " + error.message);
+        console.log(error);
+    }, {
+        timeout: 2000,
+        maximumAge: 60000
+    });
+}
+console.log(getMyPosition());
+
+
 const searchInput = document.querySelector('input[name="search"]');
 const suggestionsList = document.querySelector("#suggestions");
 const header = document.querySelector("header");
