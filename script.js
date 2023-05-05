@@ -16,7 +16,7 @@ function getMyPosition() {
         btnGeo.dataset.geoLoc = `${position.coords.latitude}, ${position.coords.longitude}`;
         console.log(btnGeo);
         const response = await fetch(
-            `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${btnGeo.dataset.geoLoc}&lang=fr&days=3&aqi=yes&alerts=no`
+            `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${btnGeo.dataset.geoLoc}&lang=fr&days=4&aqi=yes&alerts=no`
         );
         const geoWeatherData = await response.json();
         // geo = `${position.coords.latitude}, ${position.coords.longitude}`;
@@ -25,6 +25,10 @@ function getMyPosition() {
         header.classList.remove('header--landing');
         document.querySelector("form").classList.remove('form--landing');
         document.querySelector(".section-main").classList.remove('hidden');
+        document.querySelector(".section-div__localisation").classList.remove('hidden');
+        document.querySelector(".future").classList.remove('hidden');
+
+
         const temperature = document.getElementById("temperature");
         temperature.innerText = `${geoWeatherData.current.temp_c}°C`;
         const loc = document.getElementById("loc");
@@ -50,6 +54,20 @@ function getMyPosition() {
         console.log(
             `Temps actuel à ${geoWeatherData.location.name}: ${geoWeatherData.current.condition.text}`
         );
+        imgFuture1.src = `${geoWeatherData.forecast.forecastday[1].day.condition.icon}`;
+        futureDate__date1.innerText = `${geoWeatherData.forecast.forecastday[1].date}`;
+        futureDate__temp1.innerText = `${geoWeatherData.forecast.forecastday[1].day.avgtemp_c}°C`;
+
+        imgFuture2.src = `${geoWeatherData.forecast.forecastday[2].day.condition.icon}`;
+        futureDate__date2.innerText = `${geoWeatherData.forecast.forecastday[2].date}`;
+        futureDate__temp2.innerText = `${geoWeatherData.forecast.forecastday[2].day.avgtemp_c}°C`;
+
+        imgFuture3.src = `${geoWeatherData.forecast.forecastday[3].day.condition.icon}`;
+        futureDate__date3.innerText = `${geoWeatherData.forecast.forecastday[3].date}`;
+        futureDate__temp3.innerText = `${geoWeatherData.forecast.forecastday[3].day.avgtemp_c}°C`;
+        
+        let future = Date(geoWeatherData.forecast.forecastday[1].date);
+        console.log(future);
     }, function (error) {
         console.error("Erreur de géoloc N°" + error.code + " : " + error.message);
         console.log(error);
@@ -66,6 +84,9 @@ const searchInput = document.querySelector('input[name="search"]');
 const suggestionsList = document.querySelector("#suggestions");
 const header = document.querySelector("header");
 let img = document.querySelector("#icon__weather");
+let imgFuture1 = document.querySelector("#icon__weather--future-day1");
+let imgFuture2 = document.querySelector("#icon__weather--future-day2");
+let imgFuture3 = document.querySelector("#icon__weather--future-day3");
 
 
 
@@ -97,7 +118,8 @@ async function searchCities(query) {
                     header.classList.remove('header--landing');
                     document.querySelector("form").classList.remove('form--landing');
                     document.querySelector(".section-main").classList.remove('hidden');
-
+                    document.querySelector(".section-div__localisation").classList.remove('hidden');
+                    document.querySelector(".future").classList.remove('hidden');
                     const location = button.dataset.location;
                     // document.getElementById("loc").dataset
                     searchInput.value = location;
@@ -107,7 +129,7 @@ async function searchCities(query) {
                     // window.location.href = "weather.html";
 
                     const response = await fetch(
-                        `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${location}&lang=fr&days=3&aqi=yes&alerts=no`
+                        `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${location}&lang=fr&days=4&aqi=yes&alerts=no`
                     );
                     const weatherData = await response.json();
 
@@ -124,8 +146,6 @@ async function searchCities(query) {
                     let urlModified = url.split("/");
                     urlModified[4] = qualityOfIcon;
                     urlModified = urlModified.join("/");
-                    console.log("url: " + url);
-                    console.log(urlModified);
                     img.src = `${urlModified}`;
 
                     // autres fonctionnalités
@@ -133,12 +153,21 @@ async function searchCities(query) {
                     sunrise.innerText = `Lever du soleil: ${weatherData.forecast.forecastday[0].astro.sunrise}`;
                     const sunset = document.getElementById("sunset");
                     sunset.innerText = `Coucher du soleil: ${weatherData.forecast.forecastday[0].astro.sunset}`;
-                    console.log(
-                        `Température actuelle à ${weatherData.location.name}: ${weatherData.current.temp_c}°C`
-                    );
-                    console.log(
-                        `Temps actuel à ${weatherData.location.name}: ${weatherData.current.condition.text}`
-                    );
+                    
+                    imgFuture1.src = `${weatherData.forecast.forecastday[1].day.condition.icon}`;
+                    futureDate__date1.innerText = `${weatherData.forecast.forecastday[1].date}`;
+                    futureDate__temp1.innerText = `${weatherData.forecast.forecastday[1].day.avgtemp_c}°C`;
+
+                    imgFuture2.src = `${weatherData.forecast.forecastday[2].day.condition.icon}`;
+                    futureDate__date2.innerText = `${weatherData.forecast.forecastday[2].date}`;
+                    futureDate__temp2.innerText = `${weatherData.forecast.forecastday[2].day.avgtemp_c}°C`;
+
+                    imgFuture3.src = `${weatherData.forecast.forecastday[3].day.condition.icon}`;
+                    futureDate__date3.innerText = `${weatherData.forecast.forecastday[3].date}`;
+                    futureDate__temp3.innerText = `${weatherData.forecast.forecastday[3].day.avgtemp_c}°C`;
+                    
+                    let future = Date(weatherData.forecast.forecastday[1].date);
+                    console.log(future);
                 });
             });
         }
@@ -152,7 +181,7 @@ window.addEventListener("click", (event) => {
     ) {
         suggestionsList.innerHTML = "";
     }
-});
+}); // arreêter nla propagation de l'évenement
 
 let timer;
 
@@ -160,7 +189,15 @@ searchInput.addEventListener("keyup", () => {
     clearTimeout(timer);
     timer = setTimeout(function () {
         const query = searchInput.value.trim();
-        console.log(removeAccents(query));
         searchCities(removeAccents(query));
     }, 500);
 });
+
+// async function toGetValuesfromCity2(name) {
+//     let response = await fetch(
+//         `    https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${name}&days=3&aqi=yes&alerts=no`
+//     );
+//     let valuesAPI = await response.json();
+// }
+// toGetValuesfromCity2("Caen");
+
