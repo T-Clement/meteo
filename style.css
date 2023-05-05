@@ -327,9 +327,9 @@ button {
         top: 18px;
     }
 
-    .section-div__localisation {
+    /* .section-div__localisation {
         width: 60%;
-    }
+    } */
 
     @keyframes fadeOut {
         0% {
