@@ -45,7 +45,7 @@ async function searchCities(query) {
                     header.classList.remove('header--landing');
                     document.querySelector("form").classList.remove('form--landing');
                     document.querySelector(".section-main").classList.remove('hidden');
-
+                    document.querySelector(".future").classList.remove('hidden');
                     const location = button.dataset.location;
                     searchInput.value = location;
                     suggestionsList.innerHTML = "";
