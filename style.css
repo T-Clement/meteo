@@ -177,10 +177,21 @@ button {
     /* position: sticky; */
     height: 20vh;
     margin-bottom: 2rem;
+
+}
+
+.btn-container {
+    margin: 1rem;
 }
 
 .btn-geoloc {
-    z-index: 5;
+    font-size: 0.75rem;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 12px;
+    width: 40%;
+    margin: 0 auto;
+    display: flex;
 }
 
 .section-main__weather-icon {
