@@ -68,8 +68,6 @@ async function searchCities(query) {
                     let urlModified = url.split("/");
                     urlModified[4] = qualityOfIcon;
                     urlModified = urlModified.join("/");
-                    console.log("url: " + url);
-                    console.log(urlModified);
                     img.src = `${urlModified}`;
 
 
@@ -78,14 +76,21 @@ async function searchCities(query) {
                     sunrise.innerText = `Lever du soleil: ${weatherData.forecast.forecastday[0].astro.sunrise}`;
                     const sunset = document.getElementById("sunset");
                     sunset.innerText = `Coucher du soleil: ${weatherData.forecast.forecastday[0].astro.sunset}`;
-                
-                    imgFuture1.src = `${weatherData.forecast.forecastday[1].day.condition.icon}`;
-                    imgFuture2.src = `${weatherData.forecast.forecastday[2].day.condition.icon}`;
-                    imgFuture3.src = `${weatherData.forecast.forecastday[3].day.condition.icon}`;
-                    future-date__date1.innerText = `${weatherData.forecast.forecastday[1].day.date}`;
-                    future-date__date2.innerText = `${weatherData.forecast.forecastday[2].day.date}`;
-                    future-date__date3.innerText = `${weatherData.forecast.forecastday[3].day.date}`;
                     
+                    imgFuture1.src = `${weatherData.forecast.forecastday[1].day.condition.icon}`;
+                    futureDate__date1.innerText = `${weatherData.forecast.forecastday[1].date}`;
+                    futureDate__temp1.innerText = `${weatherData.forecast.forecastday[1].day.avgtemp_c}°C`;
+
+                    imgFuture2.src = `${weatherData.forecast.forecastday[2].day.condition.icon}`;
+                    futureDate__date2.innerText = `${weatherData.forecast.forecastday[2].date}`;
+                    futureDate__temp2.innerText = `${weatherData.forecast.forecastday[2].day.avgtemp_c}°C`;
+
+                    imgFuture3.src = `${weatherData.forecast.forecastday[3].day.condition.icon}`;
+                    futureDate__date3.innerText = `${weatherData.forecast.forecastday[3].date}`;
+                    futureDate__temp3.innerText = `${weatherData.forecast.forecastday[3].day.avgtemp_c}°C`;
+                    
+                    let future = Date(weatherData.forecast.forecastday[1].date);
+                    console.log(future);
                 });
             });
         }
@@ -98,7 +103,6 @@ searchInput.addEventListener("keyup", () => {
     clearTimeout(timer);
     timer = setTimeout(function () {
         const query = searchInput.value.trim();
-        console.log(removeAccents(query));
         searchCities(removeAccents(query));
     }, 500);
 });
@@ -108,51 +112,6 @@ async function toGetValuesfromCity2(name) {
         `    https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${name}&days=3&aqi=yes&alerts=no`
     );
     let valuesAPI = await response.json();
-    console.log(valuesAPI);
 }
 toGetValuesfromCity2("Caen");
-// async function toGetValuesfromCity(name) {
-//     let response = await fetch(
-//         `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${name}&aqi=no`
-//     );
-//     let valuesAPI = await response.json();
-//     console.log(valuesAPI);
-// }
-// toGetValuesfromCity("Caen");
 
-// let response = await fetch(                      //search/autocomplete url
-//     `https://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q=${query}`
-// );
-// console.log(valuesAPI.current.temp_c);
-// console.log(valuesAPI.current.condition.text);
-// console.log(valuesAPI.current.condition.icon);
-// async function searchWeather(query){
-//     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=caen&aqi=no`);
-//     const weather = await response.json();
-//     console.log(weather.current.temp_c);
-// }
-
-// async function toGetCity(name) {
-//     let response = await fetch(
-//         `https://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q=${name}`
-//     );
-//     let cityAPI = await response.json();
-//     console.log(cityAPI);
-// }
-// toGetCity("Wurzburg");
-
-// Forecast to 10 days
-// async function toGetValuesfromCity(name) {
-//     let response = await fetch(
-//         `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=Caen&days=10&aqi=no&alerts=no`
-//     );
-//     let valuesAPI = await response.json();
-//     console.log(valuesAPI);
-// }
-// toGetValuesfromCity("Caen");
-
-// https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=Caen&days=10&aqi=no&alerts=no
-
-// let url="http://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q="
-// url+=location.name
-// return url
