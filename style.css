@@ -3,6 +3,7 @@
     --primary-color: #036ba1;
     --secondary-color: rgba(0, 150, 199, 0.6);
     --ligth-grey: rgba(229, 229, 229, 1);
+    --light-blue: rgba(0, 150, 199, 0.3);
 }
 
 @media screen and (min-width: 1024px) {
@@ -211,5 +212,32 @@ button {
     .form__suggestions {
         width: 330px;
         margin-top: 1.7rem;
+    }
+}
+
+.future{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 1rem;
+}
+
+.future__itm{
+    background-color: var(--light-blue);
+    height: fit-content;
+    width: 20%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+}
+
+@media screen and (min-width: 1024px) {
+    .future{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin: 1rem;
     }
 }
