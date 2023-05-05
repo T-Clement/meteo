@@ -12,6 +12,18 @@
     }
 }
 
+
+/* UTILITIES */
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+
 /* test */
 
 body,
@@ -38,14 +50,31 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--primary-color);
+    background-color: #036ba1;
+    height: 150px;
+    width: 100%;
+    transition: height 1000ms ease-in;
 }
+
+.header--landing {
+    height: 80vh;
+    justify-content: center;
+    gap: 1.5rem;
+    /* width: 100%; */
+    /* position: sticky;
+    top: 0;
+     */
+}
+
 
 .brand {
     display: flex;
     align-items: center;
     gap: 2rem;
 }
+
+/* .brand--landing {
+} */
 
 .brand__logo {
     position: relative;
@@ -57,17 +86,22 @@ body {
     top: 20px;
 }
 
-
 @keyframes fadeOut {
-    0% { opacity: 1;}
-    50% {opacity: 0.5; left: 20px;}
-    100% {opacity: 0;}   
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+        left: 20px;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 .logo-transition {
     animation: fadeOut 2s;
 }
-
 
 .brand__img {
     width: 50px;
@@ -84,23 +118,32 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    margin-bottom: 1rem;
+    width: 60%;
+    margin-bottom: 1.5rem;
+}
+
+.form--landing {
+    padding-bottom: 10vh;
 }
 
 .form__label {
-    font-size: 1.2rem;
-    width: 60%;
+    width: 80%;
 }
 
 .form__input {
-    border: 2px solid #000;
+    border: 3px solid #000;
     border-radius: 20px;
     width: 100%;
-    padding: 0.3rem;
+    padding: 0.6rem;
+    font-size: 1rem;
 }
+
+.form__input:focus {
+    padding: 0.8rem;
+}
+
 .form__input::placeholder {
-    font-size: 0.7rem;
+    font-size: 1.2rem;
     padding: 0.6rem;
 }
 
@@ -122,8 +165,20 @@ button {
 .section-main {
     width: 80%;
     margin: 0 auto;
+    /* position: sticky; */
 }
 
+
+
+.section-main__favorites {
+    /* position: fixed; */
+    /* bottom: 0;
+    margin-bottom: 5rem;
+    width: 100%; */
+    /* position: sticky; */
+    height: 20vh;
+    margin-bottom: 2rem;
+}
 .section-main__weather-icon {
     width: 120px;
     height: 120px;
@@ -131,14 +186,14 @@ button {
 
 .section-main__localisation {
     max-width: 50%;
-    border-radius: 15px;
+    border-radius: 20px;
     background-color: #fff;
-    padding: 10px;
-    gap: 10px;
+    padding: 0.6rem;
     display: flex;
     justify-content: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    font-size: 0.9rem;
 }
 
 .section-main__weather {
@@ -166,6 +221,14 @@ button {
     padding-left: 5rem; */
 }
 
+
+
+
+
+
+
+
+/*MEDIA QUERIES*/
 @media screen and (max-width: 1024px) {
     .form__suggestions {
         width: 100%;
@@ -177,6 +240,12 @@ button {
         flex-direction: row;
         justify-content: space-around;
     }
+    
+    .header--landing {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
     .header__img {
         width: 100px;
     }
@@ -187,12 +256,23 @@ button {
         top: 18px;
     }
 
-    @keyframes fadeOut {
-        0% { opacity: 1;}
-        50% {opacity: 0.5; left: 40px;}
-        100% {opacity: 0;}   
+    .section-div__localisation {
+        width: 60%;
     }
-    
+
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+            left: 40px;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
     .logo-transition {
         animation: fadeOut 2s;
     }

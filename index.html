@@ -8,20 +8,23 @@
         <title>Document</title>
     </head>
     <body>
-        <header class="header">
-            <div class="brand">
+        <header class="header header--landing">
+            <div class="brand brand--landing">
                 <a class="brand__logo" href="index.html">
                     <img
                         class="brand__img"
                         src="/meteo/img/sun-quality.png"
                         alt="logo Clearsky"
                     />
-                    <img class="brand__img logo logo-transition" src="/meteo/img/cloud.svg">
+                    <img
+                        class="brand__img logo logo-transition"
+                        src="/img/cloud.svg"
+                    />
                 </a>
                 <h2 class="brand__ttl">Clearsky</h2>
             </div>
 
-            <form class="form">
+            <form class="form form--landing">
                 <label class="form__label">
                     <input
                         autocomplete="off"
@@ -35,29 +38,40 @@
                 <div id="suggestions" class="form__suggestions"></div>
             </form>
         </header>
-
+        
+        
         <main>
-            <section class="section-main">
-                <article class="section-main__localisation">
-                    <p class="section-main__localisation__txt" id="loc"></p>
-                </article>
-                <article class="section-main__weather">
-                    <div class="section-main__weather-info">
-                        <p
-                            class="section-main__weather-temp"
-                            id="temperature"
-                        ></p>
-                        <img
-                            id="icon__weather"
-                            class="section-main__weather-icon"
-                            src=""
-                        />
+            <div class="container">
+                <div class="section-main__favorites">
+                    <h2>Vos favoris</h2>
+                    <div id="city-favorite">
+                        <p class="">Caen</p>
                     </div>
-                    <div>
-                        <p id="sunrise"></p>
-                        <p id="sunset"></p>
-                    </div>
-                </article>
+                </div>
+            </div>
+            <section class="section-main hidden">
+                <div class="section-div__localisation">
+                    <article class="section-main__localisation">
+                        <p class="section-main__localisation__txt" id="loc"></p>
+                    </article>
+                    <article class="section-main__weather">
+                        <div class="section-main__weather-info">
+                            <p
+                                class="section-main__weather-temp"
+                                id="temperature"
+                            ></p>
+                            <img
+                                id="icon__weather"
+                                class="section-main__weather-icon"
+                                src=""
+                            />
+                        </div>
+                        <div>
+                            <p id="sunrise"></p>
+                            <p id="sunset"></p>
+                        </div>
+                    </article>
+                </div>
             </section>
             <ul class="future">
                 <li class='future__itm'>

@@ -6,12 +6,12 @@ logoTransition.addEventListener("animationend", function () {
 
 // normalize() convert string to normalize Unicode format   +  replace for replace by empty string special caracters
 function removeAccents(str) {
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-  }
-
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
 
 const searchInput = document.querySelector('input[name="search"]');
 const suggestionsList = document.querySelector("#suggestions");
+const header = document.querySelector("header");
 let img = document.querySelector("#icon__weather");
 let imgFuture1 = document.querySelector("#icon__weather--future-day1");
 let imgFuture2 = document.querySelector("#icon__weather--future-day2");
@@ -37,22 +37,27 @@ async function searchCities(query) {
             );
             cityButtons.forEach((button) => {
                 button.addEventListener("click", async () => {
+
+                    // changement de header avec une animation
+                    // au clic ajouter l'animation à header--landing
+                    // header.
+
+                    header.classList.remove('header--landing');
+                    document.querySelector("form").classList.remove('form--landing');
+                    document.querySelector(".section-main").classList.remove('hidden');
+
                     const location = button.dataset.location;
                     searchInput.value = location;
                     suggestionsList.innerHTML = "";
-                    
-                    
+
                     // changement de page
                     // window.location.href = "weather.html";
-
-
-
 
                     const response = await fetch(
                         `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${location}&lang=fr&days=4&aqi=yes&alerts=no`
                     );
                     const weatherData = await response.json();
-                    
+
                     const temperature = document.getElementById("temperature");
                     temperature.innerText = `${weatherData.current.temp_c}°C`;
                     const loc = document.getElementById("loc");
@@ -61,7 +66,6 @@ async function searchCities(query) {
                     // img.src = `${weatherData.current.condition.icon}`;
                     // let url = img.src;
 
-                    
                     // changer la taille/qualité de l'icône en 128x128
                     let qualityOfIcon = "128x128";
                     let url = `${weatherData.current.condition.icon}`;
@@ -69,7 +73,6 @@ async function searchCities(query) {
                     urlModified[4] = qualityOfIcon;
                     urlModified = urlModified.join("/");
                     img.src = `${urlModified}`;
-
 
                     // autres fonctionnalités
                     const sunrise = document.getElementById("sunrise");
@@ -96,6 +99,15 @@ async function searchCities(query) {
         }
     }
 }
+
+window.addEventListener("click", (event) => {
+    if (
+        !event.target.matches("#suggestions") &&
+        !event.target.matches('input[name="search"]')
+    ) {
+        suggestionsList.innerHTML = "";
+    }
+});
 
 let timer;
 
