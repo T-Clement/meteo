@@ -67,6 +67,8 @@ const suggestionsList = document.querySelector("#suggestions");
 const header = document.querySelector("header");
 let img = document.querySelector("#icon__weather");
 
+
+
 async function searchCities(query) {
     if (query.length >= 3) {
         const response = await fetch(
@@ -97,6 +99,7 @@ async function searchCities(query) {
                     document.querySelector(".section-main").classList.remove('hidden');
 
                     const location = button.dataset.location;
+                    // document.getElementById("loc").dataset
                     searchInput.value = location;
                     suggestionsList.innerHTML = "";
 
@@ -112,7 +115,6 @@ async function searchCities(query) {
                     temperature.innerText = `${weatherData.current.temp_c}°C`;
                     const loc = document.getElementById("loc");
                     loc.innerText = `${weatherData.location.name} (${weatherData.location.region}), ${weatherData.location.country}`;
-
                     // img.src = `${weatherData.current.condition.icon}`;
                     // let url = img.src;
 
@@ -162,57 +164,3 @@ searchInput.addEventListener("keyup", () => {
         searchCities(removeAccents(query));
     }, 500);
 });
-
-// async function toGetValuesfromCity2(name) {
-//     let response = await fetch(
-//         `    https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${name}&days=4&aqi=yes&alerts=no`
-//     );
-//     let valuesAPI = await response.json();
-//     console.log(valuesAPI);
-// }
-// toGetValuesfromCity2("Caen");
-// async function toGetValuesfromCity(name) {
-//     let response = await fetch(
-//         `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${name}&aqi=no`
-//     );
-//     let valuesAPI = await response.json();
-//     console.log(valuesAPI);
-// }
-// toGetValuesfromCity("Caen");
-
-// let response = await fetch(                      //search/autocomplete url
-//     `https://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q=${query}`
-// );
-// console.log(valuesAPI.current.temp_c);
-// console.log(valuesAPI.current.condition.text);
-// console.log(valuesAPI.current.condition.icon);
-// async function searchWeather(query){
-//     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=caen&aqi=no`);
-//     const weather = await response.json();
-//     console.log(weather.current.temp_c);
-// }
-
-// async function toGetCity(name) {
-//     let response = await fetch(
-//         `https://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q=${name}`
-//     );
-//     let cityAPI = await response.json();
-//     console.log(cityAPI);
-// }
-// toGetCity("Wurzburg");
-
-// Forecast to 10 days
-// async function toGetValuesfromCity(name) {
-//     let response = await fetch(
-//         `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=Caen&days=10&aqi=no&alerts=no`
-//     );
-//     let valuesAPI = await response.json();
-//     console.log(valuesAPI);
-// }
-// toGetValuesfromCity("Caen");
-
-// https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=Caen&days=10&aqi=no&alerts=no
-
-// let url="http://api.weatherapi.com/v1/search.json?key=dfb545a573604021be494635230205&q="
-// url+=location.name
-// return url
