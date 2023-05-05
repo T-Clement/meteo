@@ -4,7 +4,7 @@
     --secondary-color: rgba(0, 150, 199, 0.6);
     --ligth-grey: rgba(229, 229, 229, 1);
     --light-blue: rgba(0, 150, 199, 0.3);
-    font-family: ;
+    /* font-family: ; */
 }
 
 @media screen and (min-width: 1024px) {
