@@ -50,7 +50,7 @@ main {
     justify-content: space-between;
     align-items: center;
     background-color: #036ba1;
-    height: 125px;
+    height: 150px;
     width: 100%;
     transition: height 1000ms ease-in;
 }
@@ -66,15 +66,14 @@ main {
 }
 
 
-
 .brand {
     display: flex;
     align-items: center;
     gap: 2rem;
 }
 
-.brand--landing {
-}
+/* .brand--landing {
+} */
 
 .brand__logo {
     position: relative;
@@ -86,17 +85,22 @@ main {
     top: 20px;
 }
 
-
 @keyframes fadeOut {
-    0% { opacity: 1;}
-    50% {opacity: 0.5; left: 20px;}
-    100% {opacity: 0;}   
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+        left: 20px;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 .logo-transition {
     animation: fadeOut 2s;
 }
-
 
 .brand__img {
     width: 50px;
@@ -113,8 +117,8 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    margin-bottom: 1rem;
+    width: 60%;
+    margin-bottom: 1.5rem;
 }
 
 .form--landing {
@@ -122,18 +126,23 @@ main {
 }
 
 .form__label {
-    font-size: 1.2rem;
-    width: 60%;
+    width: 80%;
 }
 
 .form__input {
-    border: 2px solid #000;
+    border: 3px solid #000;
     border-radius: 20px;
     width: 100%;
-    padding: 0.3rem;
+    padding: 0.6rem;
+    font-size: 1rem;
 }
+
+.form__input:focus {
+    padding: 0.8rem;
+}
+
 .form__input::placeholder {
-    font-size: 0.7rem;
+    font-size: 1.2rem;
     padding: 0.6rem;
 }
 
@@ -176,14 +185,14 @@ button {
 
 .section-main__localisation {
     max-width: 50%;
-    border-radius: 15px;
+    border-radius: 20px;
     background-color: #fff;
-    padding: 10px;
-    gap: 10px;
+    padding: 0.6rem;
     display: flex;
     justify-content: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    font-size: 0.9rem;
 }
 
 .section-main__weather {
@@ -246,12 +255,23 @@ button {
         top: 18px;
     }
 
-    @keyframes fadeOut {
-        0% { opacity: 1;}
-        50% {opacity: 0.5; left: 40px;}
-        100% {opacity: 0;}   
+    .section-div__localisation {
+        width: 60%;
     }
-    
+
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+            left: 40px;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
     .logo-transition {
         animation: fadeOut 2s;
     }

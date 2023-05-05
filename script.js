@@ -6,9 +6,8 @@ logoTransition.addEventListener("animationend", function () {
 
 // normalize() convert string to normalize Unicode format   +  replace for replace by empty string special caracters
 function removeAccents(str) {
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-  }
-
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
 
 const searchInput = document.querySelector('input[name="search"]');
 const suggestionsList = document.querySelector("#suggestions");
@@ -47,19 +46,15 @@ async function searchCities(query) {
                     const location = button.dataset.location;
                     searchInput.value = location;
                     suggestionsList.innerHTML = "";
-                    
-                    
+
                     // changement de page
                     // window.location.href = "weather.html";
-
-
-
 
                     const response = await fetch(
                         `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${location}&lang=fr&days=3&aqi=yes&alerts=no`
                     );
                     const weatherData = await response.json();
-                    
+
                     const temperature = document.getElementById("temperature");
                     temperature.innerText = `${weatherData.current.temp_c}°C`;
                     const loc = document.getElementById("loc");
@@ -68,7 +63,6 @@ async function searchCities(query) {
                     // img.src = `${weatherData.current.condition.icon}`;
                     // let url = img.src;
 
-                    
                     // changer la taille/qualité de l'icône en 128x128
                     let qualityOfIcon = "128x128";
                     let url = `${weatherData.current.condition.icon}`;
@@ -78,7 +72,6 @@ async function searchCities(query) {
                     console.log("url: " + url);
                     console.log(urlModified);
                     img.src = `${urlModified}`;
-
 
                     // autres fonctionnalités
                     const sunrise = document.getElementById("sunrise");
@@ -97,6 +90,15 @@ async function searchCities(query) {
     }
 }
 
+window.addEventListener("click", (event) => {
+    if (
+        !event.target.matches("#suggestions") &&
+        !event.target.matches('input[name="search"]')
+    ) {
+        suggestionsList.innerHTML = "";
+    }
+});
+
 let timer;
 
 searchInput.addEventListener("keyup", () => {
@@ -108,14 +110,14 @@ searchInput.addEventListener("keyup", () => {
     }, 500);
 });
 
-async function toGetValuesfromCity2(name) {
-    let response = await fetch(
-        `    https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${name}&days=3&aqi=yes&alerts=no`
-    );
-    let valuesAPI = await response.json();
-    console.log(valuesAPI);
-}
-toGetValuesfromCity2("Caen");
+// async function toGetValuesfromCity2(name) {
+//     let response = await fetch(
+//         `    https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${name}&days=4&aqi=yes&alerts=no`
+//     );
+//     let valuesAPI = await response.json();
+//     console.log(valuesAPI);
+// }
+// toGetValuesfromCity2("Caen");
 // async function toGetValuesfromCity(name) {
 //     let response = await fetch(
 //         `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${name}&aqi=no`
