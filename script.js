@@ -54,7 +54,23 @@ async function searchCities(query) {
                     temperature.innerText = `${weatherData.current.temp_c}°C`;
                     const loc = document.getElementById("loc");
                     loc.innerText = `${weatherData.location.name} (${weatherData.location.region}), ${weatherData.location.country}`;
-                    img.src = `${weatherData.current.condition.icon}`;
+
+                    // img.src = `${weatherData.current.condition.icon}`;
+                    // let url = img.src;
+
+                    
+                    // changer la taille/qualité de l'icône en 128x128
+                    let qualityOfIcon = "128x128";
+                    let url = `${weatherData.current.condition.icon}`;
+                    let urlModified = url.split("/");
+                    urlModified[4] = qualityOfIcon;
+                    urlModified = urlModified.join("/");
+                    console.log("url: " + url);
+                    console.log(urlModified);
+                    img.src = `${urlModified}`;
+
+
+                    // autres fonctionnalités
                     const sunrise = document.getElementById("sunrise");
                     sunrise.innerText = `Lever du soleil: ${weatherData.forecast.forecastday[0].astro.sunrise}`;
                     const sunset = document.getElementById("sunset");
