@@ -13,6 +13,9 @@ function removeAccents(str) {
 const searchInput = document.querySelector('input[name="search"]');
 const suggestionsList = document.querySelector("#suggestions");
 let img = document.querySelector("#icon__weather");
+let imgFuture1 = document.querySelector("#icon__weather--future-day1");
+let imgFuture2 = document.querySelector("#icon__weather--future-day2");
+let imgFuture3 = document.querySelector("#icon__weather--future-day3");
 
 async function searchCities(query) {
     if (query.length >= 3) {
@@ -46,7 +49,7 @@ async function searchCities(query) {
 
 
                     const response = await fetch(
-                        `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${location}&lang=fr&days=3&aqi=yes&alerts=no`
+                        `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${location}&lang=fr&days=4&aqi=yes&alerts=no`
                     );
                     const weatherData = await response.json();
                     
@@ -59,12 +62,14 @@ async function searchCities(query) {
                     sunrise.innerText = `Lever du soleil: ${weatherData.forecast.forecastday[0].astro.sunrise}`;
                     const sunset = document.getElementById("sunset");
                     sunset.innerText = `Coucher du soleil: ${weatherData.forecast.forecastday[0].astro.sunset}`;
-                    console.log(
-                        `Température actuelle à ${weatherData.location.name}: ${weatherData.current.temp_c}°C`
-                    );
-                    console.log(
-                        `Temps actuel à ${weatherData.location.name}: ${weatherData.current.condition.text}`
-                    );
+                
+                    imgFuture1.src = `${weatherData.forecast.forecastday[1].day.condition.icon}`;
+                    imgFuture2.src = `${weatherData.forecast.forecastday[2].day.condition.icon}`;
+                    imgFuture3.src = `${weatherData.forecast.forecastday[3].day.condition.icon}`;
+                    future-date__date1.innerText = `${weatherData.forecast.forecastday[1].day.date}`;
+                    future-date__date2.innerText = `${weatherData.forecast.forecastday[2].day.date}`;
+                    future-date__date3.innerText = `${weatherData.forecast.forecastday[3].day.date}`;
+                    
                 });
             });
         }
