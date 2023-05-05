@@ -178,6 +178,11 @@ button {
     height: 20vh;
     margin-bottom: 2rem;
 }
+
+.btn-geoloc {
+    z-index: 5;
+}
+
 .section-main__weather-icon {
     width: 120px;
     height: 120px;

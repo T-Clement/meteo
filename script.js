@@ -9,22 +9,57 @@ function removeAccents(str) {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
-
 // function geoLocalisation
 function getMyPosition() {
-    navigator.geolocation.getCurrentPosition(function (position) {    //navigator Objet contenant ttes les infos de l user / Geolocation obtenir la geoloc/ GetCurrentPosition Methode demande la position de l appareil de l'user et traite le retour.
+    navigator.geolocation.getCurrentPosition(async function (position) {    //navigator Objet contenant ttes les infos de l user / Geolocation obtenir la geoloc/ GetCurrentPosition Methode demande la position de l appareil de l'user et traite le retour.
         console.log("Position trouvée : Latitude=" + position.coords.latitude + " Longitude=" + position.coords.longitude);
-        // return `${position.coords.latitude}, ${position.coords.longitude}`;
-        console.log(position.coords);
+        btnGeo.dataset.geoLoc = `${position.coords.latitude}, ${position.coords.longitude}`;
+        console.log(btnGeo);
+        const response = await fetch(
+            `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${btnGeo.dataset.geoLoc}&lang=fr&days=3&aqi=yes&alerts=no`
+        );
+        const geoWeatherData = await response.json();
+        // geo = `${position.coords.latitude}, ${position.coords.longitude}`;
+        // console.log(position.coords);
+        console.log(geoWeatherData);
+        header.classList.remove('header--landing');
+        document.querySelector("form").classList.remove('form--landing');
+        document.querySelector(".section-main").classList.remove('hidden');
+        const temperature = document.getElementById("temperature");
+        temperature.innerText = `${geoWeatherData.current.temp_c}°C`;
+        const loc = document.getElementById("loc");
+        loc.innerText = `${geoWeatherData.location.name} (${geoWeatherData.location.region}), ${geoWeatherData.location.country}`;
+        // changer la taille/qualité de l'icône en 128x128
+        let qualityOfIcon = "128x128";
+        let url = `${geoWeatherData.current.condition.icon}`;
+        let urlModified = url.split("/");
+        urlModified[4] = qualityOfIcon;
+        urlModified = urlModified.join("/");
+        console.log("url: " + url);
+        console.log(urlModified);
+        img.src = `${urlModified}`;
+
+        // autres fonctionnalités
+        const sunrise = document.getElementById("sunrise");
+        sunrise.innerText = `Lever du soleil: ${geoWeatherData.forecast.forecastday[0].astro.sunrise}`;
+        const sunset = document.getElementById("sunset");
+        sunset.innerText = `Coucher du soleil: ${geoWeatherData.forecast.forecastday[0].astro.sunset}`;
+        console.log(
+            `Température actuelle à ${geoWeatherData.location.name}: ${geoWeatherData.current.temp_c}°C`
+        );
+        console.log(
+            `Temps actuel à ${geoWeatherData.location.name}: ${geoWeatherData.current.condition.text}`
+        );
     }, function (error) {
-        console.log("Erreur de géoloc N°" + error.code + " : " + error.message);
+        console.error("Erreur de géoloc N°" + error.code + " : " + error.message);
         console.log(error);
     }, {
         timeout: 2000,
         maximumAge: 60000
     });
 }
-console.log(getMyPosition());
+const btnGeo = document.getElementById("btn-geoloc");
+btnGeo.addEventListener("click", getMyPosition);
 
 
 const searchInput = document.querySelector('input[name="search"]');
