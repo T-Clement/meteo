@@ -40,17 +40,39 @@ main {
     background-color: #036ba1;
 }
 
-.header-brand {
+.brand {
     display: flex;
     align-items: center;
     gap: 2rem;
 }
 
-.header-brand-img {
+.brand__logo {
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 10px;
+    top: 20px;
+}
+
+
+@keyframes fadeOut {
+    0% { opacity: 1;}
+    50% {opacity: 0.5; left: 20px;}
+    100% {opacity: 0;}   
+}
+
+.logo-transition {
+    animation: fadeOut 2s;
+}
+
+
+.brand__img {
     width: 50px;
 }
 
-.header-brand-txt {
+.brand__ttl {
     text-transform: uppercase;
     color: #fff;
 }
@@ -96,38 +118,51 @@ button {
     width: 100%;
 }
 
-.icon__weather {
+.section-main {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.section-main__weather-icon {
     width: 120px;
     height: 120px;
 }
 
-.localisation-component {
-    width: 107px;
-    height: 36px;
+.section-main__localisation {
+    max-width: 50%;
     border-radius: 15px;
     background-color: #fff;
     padding: 10px;
     gap: 10px;
     display: flex;
-    margin-left: 52px;
-    margin-top: 180px;
-    margin-bottom: 20px;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
-.localisation-component-txt {
-    font-size: 12px;
-}
-
-.weather-component {
-    margin: 0 auto;
-
-    height: 299.18px;
-    width: 341px;
+.section-main__weather {
+    height: 17rem;
+    width: 100%;
     border-radius: 20px;
     background-color: var(--secondary-color);
     display: flex;
-    padding: 25px;
-    gap: 27px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.section-main__weather-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.section-main__weather-temp {
+    font-size: 2rem;
+    /* border-left: 2px solid #000;
+    padding-left: 5rem; */
 }
 
 @media screen and (max-width: 1024px) {
@@ -141,9 +176,26 @@ button {
         flex-direction: row;
         justify-content: space-around;
     }
-    .header-brand-img {
+    .header__img {
         width: 100px;
     }
+
+    .logo {
+        position: absolute;
+        left: 20px;
+        top: 18px;
+    }
+
+    @keyframes fadeOut {
+        0% { opacity: 1;}
+        50% {opacity: 0.5; left: 40px;}
+        100% {opacity: 0;}   
+    }
+    
+    .logo-transition {
+        animation: fadeOut 2s;
+    }
+
     .form {
         width: 30%;
         margin-bottom: 0;
