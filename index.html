@@ -9,8 +9,8 @@
         <title>Clearsky</title>
     </head>
     <body>
-        <header class="header">
-            <div class="brand">
+        <header class="header header--landing">
+            <div class="brand brand--landing">
                 <a class="brand__logo" href="index.html">
                     <img
                         class="brand__img"
@@ -22,7 +22,7 @@
                 <h2 class="brand__ttl">Clearsky</h2>
             </div>
 
-            <form class="form">
+            <form class="form form--landing">
                 <label class="form__label">
                     <input
                         autocomplete="off"
@@ -36,10 +36,19 @@
                 <div id="suggestions" class="form__suggestions"></div>
             </form>
         </header>
-
+        
+        
         <main>
-            <section class="section-main">
-                <article class="section-main__localisation">
+            <div class="container">
+                <div class="section-main__favorites">
+                    <h2>Vos favoris</h2>
+                    <div id="city-favorite">
+                        <p class="">Caen</p>
+                    </div>
+                </div>
+            </div>
+            <section class="section-main hidden">
+                <article class="section-main__localisation section-main__localisation--landing">
                     <p class="section-main__localisation__txt" id="loc"></p>
                 </article>
                 <article class="section-main__weather">
