@@ -195,6 +195,10 @@ button {
         top: 18px;
     }
 
+    .section-div__localisation {
+        width: 50%;
+    }
+
     @keyframes fadeOut {
         0% {
             opacity: 1;

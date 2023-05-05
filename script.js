@@ -53,7 +53,6 @@ async function searchCities(query) {
                     // img.src = `${weatherData.current.condition.icon}`;
                     // let url = img.src;
 
-                    
                     // changer la taille/qualité de l'icône en 128x128
                     let qualityOfIcon = "128x128";
                     let url = `${weatherData.current.condition.icon}`;
@@ -63,7 +62,6 @@ async function searchCities(query) {
                     console.log("url: " + url);
                     console.log(urlModified);
                     img.src = `${urlModified}`;
-
 
                     // autres fonctionnalités
                     const sunrise = document.getElementById("sunrise");
@@ -93,14 +91,14 @@ searchInput.addEventListener("keyup", () => {
     }, 500);
 });
 
-// async function toGetValuesfromCity2(name) {
-//     let response = await fetch(
-//         `    https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${name}&days=3&aqi=yes&alerts=no`
-//     );
-//     let valuesAPI = await response.json();
-//     console.log(valuesAPI);
-// }
-// toGetValuesfromCity2("Caen");
+async function toGetValuesfromCity2(name) {
+    let response = await fetch(
+        `    https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${name}&days=4&aqi=yes&alerts=no`
+    );
+    let valuesAPI = await response.json();
+    console.log(valuesAPI);
+}
+toGetValuesfromCity2("Caen");
 // async function toGetValuesfromCity(name) {
 //     let response = await fetch(
 //         `https://api.weatherapi.com/v1/current.json?key=dfb545a573604021be494635230205&q=${name}&aqi=no`
