@@ -5,6 +5,7 @@ logoTransition.addEventListener("animationend", function () {
 });
 
 
+
 //-----------------------------------------------------------------------------------
 
 /**
@@ -21,19 +22,19 @@ function removeAccents(string) {
 // ----------------------------------------------------------------------------------
 
 /**
- * This function change the url of weather icon, origin : 64x64 new: 128x128
+ * This function change the url of weather icon, from "64x64" pixels to "128x128" pixels
 * 
 * @param {string} url - url who passed to the API to get icon related to weather
 * @return {string} Return transformed URL 
 */
 function changeWeatherIconUrlTo128px(url) {
-    // 128x128 is the best quality find in the CDN
+    // store 128x128 pixels value in variable qualityOfIcon
     let qualityOfIcon = "128x128";
-    //split the url in a array
+    // split the url in a array
     let urlModified = url.split("/");
-    // change 64x64 to 128x128
+    // change "64x64" to "128x128"
     urlModified[4] = qualityOfIcon;
-    // join the array in a string
+    // join the array as a string
     urlModified = urlModified.join("/");
     return urlModified
 }
@@ -41,11 +42,11 @@ function changeWeatherIconUrlTo128px(url) {
 // ----------------------------------------------------------------------------------
 
 /**
- * This function display the weather by removing CSS classes "--landing" variants
+ * This function displays the weather by removing CSS classes "--landing" variants
  * 
- */
+*/
 function displayWeather() {
-    //remove css classes
+    // Remove css classes
     header.classList.remove('header--landing');
     document.querySelector("form").classList.remove('form--landing');
     document.querySelector(".section-main").classList.remove('hidden');
@@ -53,12 +54,44 @@ function displayWeather() {
     document.querySelector(".future").classList.remove('hidden');
 }
 
+
+
+
+
 // ----------------------------------------------------------------------------------
 
+/**
+ * 
+ * This function display the Temperature by targeting element in DOM and set it's value to the value of the API response
+ * 
+ * @param {object} weatherData - full data of chosen city
+ */
+function displayTemperature(weatherData) {
+    temperatureMainTile.innerText = `${weatherData.current.temp_c}°C`;
+}
+
+// ----------------------------------------------------------------------------------
+
+/**
+ * 
+ * This function set the Location to the title section
+ * 
+ * @param {object} weatherData - full data of chosen city
+ */
+function displayLocation(weatherData) {
+    loc.innerText = `${weatherData.location.name} (${weatherData.location.region}), ${weatherData.location.country}`;
+}
+// ============================================================================================================ //
 
 
 
-// function geoLocalisation
+// Target elements in DOM
+
+const temperatureMainTile = document.getElementById("temperature");
+const loc = document.getElementById("loc");
+
+
+// function get wearther with geoLocalisation
 function getMyPosition() {
     navigator.geolocation.getCurrentPosition(async function (position) {    //navigator Objet contenant ttes les infos de l user / Geolocation obtenir la geoloc/ GetCurrentPosition Methode demande la position de l appareil de l'user et traite le retour.
         console.log("Position trouvée : Latitude=" + position.coords.latitude + " Longitude=" + position.coords.longitude);
@@ -71,16 +104,14 @@ function getMyPosition() {
         console.log(geoWeatherData);
 
 
-        // display
+        // display weather in tiles
         displayWeather();
-            
 
+        // display the choosen city in tile 
+        displayLocation(geoWeatherData);
 
-        const temperature = document.getElementById("temperature");
-        temperature.innerText = `${geoWeatherData.current.temp_c}°C`;
-        const loc = document.getElementById("loc");
-        loc.innerText = `${geoWeatherData.location.name} (${geoWeatherData.location.region}), ${geoWeatherData.location.country}`;
-        
+        // display the temperature
+        displayTemperature(geoWeatherData)
         
         // change quality of icon related to weather
         img.src = changeWeatherIconUrlTo128px(geoWeatherData.current.condition.icon);
@@ -88,8 +119,8 @@ function getMyPosition() {
 
         // autres fonctionnalités
         const sunrise = document.getElementById("sunrise");
-        sunrise.innerText = `Lever du soleil: ${geoWeatherData.forecast.forecastday[0].astro.sunrise}`;
         const sunset = document.getElementById("sunset");
+        sunrise.innerText = `Lever du soleil: ${geoWeatherData.forecast.forecastday[0].astro.sunrise}`;
         sunset.innerText = `Coucher du soleil: ${geoWeatherData.forecast.forecastday[0].astro.sunset}`;
         console.log(
             `Température actuelle à ${geoWeatherData.location.name}: ${geoWeatherData.current.temp_c}°C`
@@ -97,6 +128,8 @@ function getMyPosition() {
         console.log(
             `Temps actuel à ${geoWeatherData.location.name}: ${geoWeatherData.current.condition.text}`
         );
+
+
         imgFuture1.src = `${geoWeatherData.forecast.forecastday[1].day.condition.icon}`;
         futureDate__date1.innerText = `${geoWeatherData.forecast.forecastday[1].date}`;
         futureDate__temp1.innerText = `${geoWeatherData.forecast.forecastday[1].day.avgtemp_c}°C`;
