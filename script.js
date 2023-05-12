@@ -81,7 +81,30 @@ function displayTemperature(weatherData) {
 function displayLocation(weatherData) {
     loc.innerText = `${weatherData.location.name} (${weatherData.location.region}), ${weatherData.location.country}`;
 }
+
+// ----------------------------------------------------------------------------------
+
+/**
+ * 
+ * This function
+ */
+
+function displayEphemeris(weatherData) {
+    const sunrise = document.getElementById("sunrise");
+    const sunset = document.getElementById("sunset");
+    sunrise.innerText = `Lever du soleil: ${weatherData.forecast.forecastday[0].astro.sunrise}`;
+    sunset.innerText = `Coucher du soleil: ${weatherData.forecast.forecastday[0].astro.sunset}`;
+}
+
+
+
+
 // ============================================================================================================ //
+
+
+
+
+
 
 
 
@@ -116,12 +139,11 @@ function getMyPosition() {
         // change quality of icon related to weather
         img.src = changeWeatherIconUrlTo128px(geoWeatherData.current.condition.icon);
 
-
+        // display ephemeris
+        displayEphemeris(geoWeatherData);
+        
         // autres fonctionnalités
-        const sunrise = document.getElementById("sunrise");
-        const sunset = document.getElementById("sunset");
-        sunrise.innerText = `Lever du soleil: ${geoWeatherData.forecast.forecastday[0].astro.sunrise}`;
-        sunset.innerText = `Coucher du soleil: ${geoWeatherData.forecast.forecastday[0].astro.sunset}`;
+
         console.log(
             `Température actuelle à ${geoWeatherData.location.name}: ${geoWeatherData.current.temp_c}°C`
         );
@@ -147,6 +169,7 @@ function getMyPosition() {
     }, function (error) {
         console.error("Erreur de géoloc N°" + error.code + " : " + error.message);
         console.log(error);
+        alert("La localisation a rencontré un problème, recommencez")
     }, {
         timeout: 2000,
         maximumAge: 60000
