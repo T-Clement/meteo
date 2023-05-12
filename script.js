@@ -4,10 +4,59 @@ logoTransition.addEventListener("animationend", function () {
     logoTransition.style.display = "none";
 });
 
-// normalize() convert string to normalize Unicode format   +  replace for replace by empty string special caracters
-function removeAccents(str) {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+//-----------------------------------------------------------------------------------
+
+/**
+ * This function transform accented caracter to normal caracter
+ * 
+ * @param {string} string - String with accented caracters
+ * @return {string} Return transformed string without accents
+ */
+function removeAccents(string) {
+    // normalize() convert string to normalize Unicode format and replace by empty string special caracters
+    return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
+
+// ----------------------------------------------------------------------------------
+
+/**
+ * This function change the url of weather icon, origin : 64x64 new: 128x128
+* 
+* @param {string} url - url who passed to the API to get icon related to weather
+* @return {string} Return transformed URL 
+*/
+function changeWeatherIconUrlTo128px(url) {
+    // 128x128 is the best quality find in the CDN
+    let qualityOfIcon = "128x128";
+    //split the url in a array
+    let urlModified = url.split("/");
+    // change 64x64 to 128x128
+    urlModified[4] = qualityOfIcon;
+    // join the array in a string
+    urlModified = urlModified.join("/");
+    return urlModified
+}
+
+// ----------------------------------------------------------------------------------
+
+/**
+ * This function display the weather by removing CSS classes "--landing" variants
+ * 
+ */
+function displayWeather() {
+    //remove css classes
+    header.classList.remove('header--landing');
+    document.querySelector("form").classList.remove('form--landing');
+    document.querySelector(".section-main").classList.remove('hidden');
+    document.querySelector(".section-div__localisation").classList.remove('hidden');
+    document.querySelector(".future").classList.remove('hidden');
+}
+
+// ----------------------------------------------------------------------------------
+
+
+
 
 // function geoLocalisation
 function getMyPosition() {
@@ -17,31 +66,25 @@ function getMyPosition() {
         console.log(btnGeo);
         const response = await fetch(
             `https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${btnGeo.dataset.geoLoc}&lang=fr&days=4&aqi=yes&alerts=no`
-        );
+            );
         const geoWeatherData = await response.json();
-        // geo = `${position.coords.latitude}, ${position.coords.longitude}`;
-        // console.log(position.coords);
         console.log(geoWeatherData);
-        header.classList.remove('header--landing');
-        document.querySelector("form").classList.remove('form--landing');
-        document.querySelector(".section-main").classList.remove('hidden');
-        document.querySelector(".section-div__localisation").classList.remove('hidden');
-        document.querySelector(".future").classList.remove('hidden');
+
+
+        // display
+        displayWeather();
+            
 
 
         const temperature = document.getElementById("temperature");
         temperature.innerText = `${geoWeatherData.current.temp_c}°C`;
         const loc = document.getElementById("loc");
         loc.innerText = `${geoWeatherData.location.name} (${geoWeatherData.location.region}), ${geoWeatherData.location.country}`;
-        // changer la taille/qualité de l'icône en 128x128
-        let qualityOfIcon = "128x128";
-        let url = `${geoWeatherData.current.condition.icon}`;
-        let urlModified = url.split("/");
-        urlModified[4] = qualityOfIcon;
-        urlModified = urlModified.join("/");
-        console.log("url: " + url);
-        console.log(urlModified);
-        img.src = `${urlModified}`;
+        
+        
+        // change quality of icon related to weather
+        img.src = changeWeatherIconUrlTo128px(geoWeatherData.current.condition.icon);
+
 
         // autres fonctionnalités
         const sunrise = document.getElementById("sunrise");
@@ -90,6 +133,7 @@ let imgFuture3 = document.querySelector("#icon__weather--future-day3");
 
 
 
+
 async function searchCities(query) {
     if (query.length >= 3) {
         const response = await fetch(
@@ -111,15 +155,12 @@ async function searchCities(query) {
             cityButtons.forEach((button) => {
                 button.addEventListener("click", async () => {
 
-                    // changement de header avec une animation
-                    // au clic ajouter l'animation à header--landing
-                    // header.
+                    
 
-                    header.classList.remove('header--landing');
-                    document.querySelector("form").classList.remove('form--landing');
-                    document.querySelector(".section-main").classList.remove('hidden');
-                    document.querySelector(".section-div__localisation").classList.remove('hidden');
-                    document.querySelector(".future").classList.remove('hidden');
+                    // display
+                    displayWeather();
+
+
                     const location = button.dataset.location;
                     // document.getElementById("loc").dataset
                     searchInput.value = location;
@@ -137,16 +178,11 @@ async function searchCities(query) {
                     temperature.innerText = `${weatherData.current.temp_c}°C`;
                     const loc = document.getElementById("loc");
                     loc.innerText = `${weatherData.location.name} (${weatherData.location.region}), ${weatherData.location.country}`;
-                    // img.src = `${weatherData.current.condition.icon}`;
-                    // let url = img.src;
+                    
 
-                    // changer la taille/qualité de l'icône en 128x128
-                    let qualityOfIcon = "128x128";
-                    let url = `${weatherData.current.condition.icon}`;
-                    let urlModified = url.split("/");
-                    urlModified[4] = qualityOfIcon;
-                    urlModified = urlModified.join("/");
-                    img.src = `${urlModified}`;
+                    // change quality of icon related to weather
+                    img.src = changeWeatherIconUrlTo128px(weatherData.current.condition.icon);
+
 
                     // autres fonctionnalités
                     const sunrise = document.getElementById("sunrise");
@@ -181,7 +217,7 @@ window.addEventListener("click", (event) => {
     ) {
         suggestionsList.innerHTML = "";
     }
-}); // arreêter nla propagation de l'évenement
+}); // arrêter la propagation de l'évènement
 
 let timer;
 
@@ -192,12 +228,3 @@ searchInput.addEventListener("keyup", () => {
         searchCities(removeAccents(query));
     }, 500);
 });
-
-// async function toGetValuesfromCity2(name) {
-//     let response = await fetch(
-//         `    https://api.weatherapi.com/v1/forecast.json?key=dfb545a573604021be494635230205&q=${name}&days=3&aqi=yes&alerts=no`
-//     );
-//     let valuesAPI = await response.json();
-// }
-// toGetValuesfromCity2("Caen");
-
